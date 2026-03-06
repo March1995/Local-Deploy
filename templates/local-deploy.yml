@@ -7,19 +7,19 @@ auto_deploy: true
 
 # Maven build configuration
 maven:
-  profile: dev                          # Maven Profile name
+  profile: mf-dev                       # Maven Profile name
   goals: clean package                  # Maven build goals
   options: -DskipTests                  # Extra Maven arguments
 
 # Docker deployment configuration
 # Image name and container name are auto-generated: {artifactId}-{profile} (artifactId from pom.xml)
 docker:
-  cli: docker                           # Docker CLI path (e.g. /usr/local/bin/docker)
+  cli: /opt/docker/docker                           # Docker CLI path (e.g. /usr/local/bin/docker)
   host: tcp://192.168.192.1:2375        # Remote Docker Daemon address
   image_tag: latest                     # Image tag
-  jvm_opts: -Xms256m -Xmx512m          # JVM options (injected via JAVA_OPTS env var)
-  ports: 8080:8080                      # Port mappings (comma-separated)
-  env: SPRING_PROFILES_ACTIVE=dev       # Environment variables (comma-separated)
+  jvm_opts: -Xms256m -Xmx512m          # JVM options (injected via JVM_OPTS env var)
+  ports: 9091:9091                      # Port mappings (comma-separated)
+  env: SPRING_PROFILES_ACTIVE=mf-dev       # Environment variables (comma-separated)
   volumes:          # Volume mounts (comma-separated)
   network:                              # Docker network (optional)
   extra_args: --restart=always          # Extra docker run arguments

@@ -68,8 +68,8 @@ local-deploy init
 ```dockerfile
 FROM openjdk:17-jdk-slim
 COPY target/*.jar /app/app.jar
-ENV JAVA_OPTS=""
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
+ENV JVM_OPTS=""
+ENTRYPOINT ["sh", "-c", "java $JVM_OPTS -jar /app/app.jar"]
 ```
 
 多环境则创建多个文件：`dev.dockerfile`、`prod.dockerfile` 等。
@@ -263,7 +263,7 @@ local-deploy log -f
 | `cli` | Docker CLI 可执行文件路径 | `docker` | `/usr/local/bin/docker` |
 | `host` | 远程 Docker Daemon 地址（**必填**） | — | `tcp://192.168.1.100:2375` |
 | `image_tag` | 镜像标签 | `latest` | `1.0.0` |
-| `jvm_opts` | JVM 参数，注入为 `JAVA_OPTS` 环境变量 | （空） | `-Xms256m -Xmx512m` |
+| `jvm_opts` | JVM 参数，注入为 `JVM_OPTS` 环境变量 | （空） | `-Xms256m -Xmx512m` |
 | `ports` | 端口映射，逗号分隔 | （空） | `8080:8080,9090:9090` |
 | `env` | 环境变量，逗号分隔 | （空） | `SPRING_PROFILES_ACTIVE=dev,DB_HOST=db` |
 | `volumes` | 卷挂载，逗号分隔 | （空） | `/data/logs:/app/logs,/data/config:/app/config` |

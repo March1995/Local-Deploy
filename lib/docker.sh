@@ -130,9 +130,9 @@ deploy_docker_container() {
         done
     fi
 
-    # JVM options as JAVA_OPTS environment variable
+    # JVM options as JVM_OPTS environment variable
     if [ -n "${docker_jvm_opts}" ]; then
-        run_cmd="${run_cmd} -e \"JAVA_OPTS=${docker_jvm_opts}\""
+        run_cmd="${run_cmd} -e \"JVM_OPTS=${docker_jvm_opts}\""
     fi
 
     # Environment variables
